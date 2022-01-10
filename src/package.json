@@ -1,0 +1,17 @@
+{
+  "name": "reactour-tour-demo-template",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "@reactour/tour": "2.0.1",
+    "body-scroll-lock": "2.6.4",
+    "css-loader": "1.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "4.3.1",
+    "reshake": "1.2.1",
+    "styled-components": "5.3.1"
+  }
+}
