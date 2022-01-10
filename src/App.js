@@ -1,31 +1,62 @@
 import './App.css';
-// import {} from "@ranndev/ui-guide"
-import {useTour} from '@reactour/tour'
-import Mask from "./Mask"
-import {useRef, useState} from "react";
+import { useState, useRef } from 'react'
+import { useRect } from '@reactour/utils'
+import { Mask } from '@reactour/mask'
 
 function App() {
-    const {setIsOpen} = useTour()
 
-    const [mask, setMask] = useState(false)
-    const [r, setR] = useState()
-    const ref = useRef()
-    const ref2 = useRef()
+    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen2, setIsOpen2] = useState(false)
+    const ref = useRef(null)
+    const ref2 = useRef(null)
+    const sizes = useRect(ref)
+    const sizes2 = useRect(ref2)
 
     return (
 
         <div className="App">
-            <div className="test2" id={"test2"} ref={ref}></div>
-            <h3 ref={ref2}>some text</h3>
-            <button onClick={() =>{
-                setR(ref2)
-                setMask(!mask)
-            }}>mask2</button>
-            <button onClick={() =>{
-                setR(ref)
-                setMask(!mask)
-            }}>mask</button>
-            {mask && <Mask maskEl={r}/>}
+            <ul>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li ref={ref2}>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+            <button onClick={() => setIsOpen2(o => !o)}>
+                {isOpen2 ? 'Close' : 'Open'} Mask 2
+            </button>
+            <button onClick={() => setIsOpen(o => !o)} ref={ref}>
+                {isOpen ? 'Close' : 'Open'} Mask
+            </button>
+            {isOpen ? (
+                <>
+                    <Mask
+                        sizes={sizes}
+                        onClick={() => setIsOpen(false)}
+                        styles={{
+                            // maskWrapper: base => ({ ...base, color, opacity: 0.99 }),
+                            // maskArea: base => ({ ...base, rx: 10 }),
+                        }}
+                    />
+                </>
+            ) : null}
+            {isOpen2 ? (
+                <>
+                    <h1>22</h1>
+                    <Mask
+                        sizes={sizes2}
+                        onClick={() => setIsOpen2(false)}
+                        styles={{
+                            maskWrapper: base => ({ ...base, opacity: 0.5 }),
+                            maskArea: base => ({ ...base, rx: 10 }),
+                        }}
+                    />
+                </>
+            ) : null}
         </div>
     );
 }
